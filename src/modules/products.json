@@ -1,0 +1,32 @@
+[
+  {
+    "title": "Honda",
+    "description": "Auto Japones",
+    "code": "aeiou",
+    "price": 1000,
+    "status": true,
+    "stock": 11,
+    "categoria": "deportivo",
+    "id": "KjrlLvZVnhpysxdEmrIfV"
+  },
+  {
+    "title": "Chevrolet",
+    "description": "Auto EEUU",
+    "code": "abc451",
+    "price": 10000,
+    "status": true,
+    "stock": 110,
+    "categoria": "automovil",
+    "id": "bNwKFhmyRwR-vlznE5JCD"
+  },
+  {
+    "title": "Ford",
+    "description": "Auto 4x4",
+    "code": "xyz258",
+    "price": 100000,
+    "status": true,
+    "stock": 100,
+    "categoria": "camionetas",
+    "id": "WgN8vuOjbS1T97uM0mhrn"
+  }
+]
