@@ -40,25 +40,30 @@ class CartManager {
   addProductInCart = async (cartId, productId) => {
     let cartById = await this.exist(cartId);
     if (!cartById) return "Carrito No Encontrado";
+
     let productById = await productAll.exist(productId);
-    if (!cartById) return "Producto No Encontrado";
+    if (!productById) return "Producto No Encontrado";
 
     let cartsAll = await this.readCarts();
-    let cartFilter = cartsAll.filter((cart) => cart.id != cartId);
 
-    if (cartById.products.some((prod) => prod.id === productId)) {
-      let moreProductInCart = cartById.products.find(
-        (prod) => prod.id === productId
-      );
-      moreProductInCart.cantidad++;
-      console.log(moreProductInCart.cantidad);
-      let cartsConcat = [cartById, ...cartFilter];
-      await this.writeCarts(cartsConcat);
-      return "Producto sumado al carrito";
+    let updatedCart = cartsAll.find((cart) => cart.id === cartId);
+
+    let existingProduct = updatedCart.products.find(
+      (prod) => prod.id === productId
+    );
+
+    if (existingProduct) {
+      existingProduct.cantidad++;
+    } else {
+      updatedCart.products.push({ id: productId, cantidad: 1 });
     }
 
-    let cartsConcat = [cartById, ...cartFilter];
-    await this.writeCarts(cartsConcat);
+    let updatedCarts = cartsAll.map((cart) =>
+      cart.id === cartId ? updatedCart : cart
+    );
+
+    await this.writeCarts(updatedCarts);
+
     return "Producto agregado al carrito";
   };
 }
